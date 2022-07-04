@@ -29,8 +29,8 @@ export default function Home() {
   const [directionme,setDirectionme] = useState([0,0]);
   const [gameState,setGameState] = useState(true);
   const [clearState,setClearState] = useState(false);
-  const [gpsx,setGpsx] = useState([]);
-  const [gpsy,setGpsy] = useState([]);
+  const [gpsx,setGpsx] = useState();
+  const [gpsy,setGpsy] = useState();
   const [gpsx1,setGpsx1] = useState();
   const [gpsy1,setGpsy1] = useState();
   const [done,setDone] = useState(false);
@@ -39,8 +39,7 @@ export default function Home() {
   const henkou = useCallback((bx,by,nx,ny) => {
     let x=0;
     let y=0;
-    console.log(bx,by,nx,ny);
-    if(gpsx.length==2 && gpsy.length==2){
+    // // console.log(bx,by,nx,ny);
       if(bx<nx && retu!=0){
         y=-1;
       }else if(bx>nx && retu!=9){
@@ -50,10 +49,9 @@ export default function Home() {
       }else if(by>ny && gyo!=0){
         x=-1;
       }
-      console.log(gpsx,gpsy);
-        setGpsx([]);
-        setGpsy([]);
-    }
+      // // console.log(gpsx,gpsy);
+        setGpsx(nx);
+        setGpsy(ny);
     const tmp = [...lineRow];
     let a=retu+y;
     let b=gyo+x;
@@ -131,21 +129,10 @@ export default function Home() {
     document.body.appendChild(tag);
   }
 
-  // const success = useCallback((pos) => {
-  //   var crd = pos.coords;
-  //   if(gpsx!=0){
-  //     henkou(gpsx,gpsy,crd.longitude,crd.latitude)
-  //   }
-  //   setGpsx(crd.longitude);
-  //   setGpsy(crd.latitude);
-  // },[])
-
   const success = useCallback((pos) => {
     var crd = pos.coords;
-    console.log(gpsx,gpsy,crd.longitude,crd.latitude);
+    // // console.log(gpsx,gpsy,crd.longitude,crd.latitude);
     henkou(gpsx,gpsy,crd.longitude,crd.latitude);
-    setGpsx(crd.longitude);
-    setGpsy(crd.latitude);
   },[gpsx,gpsy,henkou])
 
 
@@ -199,8 +186,8 @@ export default function Home() {
         </tbody>
       </table>
       : <h1>ゲームオーバー</h1>)}
-        横{gpsx[0]}
-        縦{gpsy[0]}
+        横{gpsx}
+        縦{gpsy}
         {/* <input  onChange={(e) => seta(e.target.value)}/>
         <input  onChange={(e) => setb(e.target.value)}/>
         <input  onChange={(e) => setc(e.target.value)}/>
