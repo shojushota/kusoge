@@ -39,6 +39,7 @@ export default function Home() {
   const henkou = useCallback((bx,by,nx,ny) => {
     let x=0;
     let y=0;
+    console.log(bx,by,nx,ny);
     if(gpsx.length==2 && gpsy.length==2){
       if(bx<nx && retu!=0){
         y=-1;
@@ -141,10 +142,11 @@ export default function Home() {
 
   const success = useCallback((pos) => {
     var crd = pos.coords;
-    gpsx.push(crd.longitude);
-    gpsy.push(crd.latitude);
-    setDone(true);
-  },[gpsx,gpsy])
+    console.log(gpsx,gpsy,crd.longitude,crd.latitude);
+    henkou(gpsx,gpsy,crd.longitude,crd.latitude);
+    setGpsx(crd.longitude);
+    setGpsy(crd.latitude);
+  },[gpsx,gpsy,henkou])
 
 
   const error = useCallback((err) => {
@@ -162,7 +164,7 @@ export default function Home() {
         navigator.geolocation.getCurrentPosition(success, error, options);
         if(done==true){
           setDone(false);
-          henkou(gpsx[0],gpsy[0],gpsx[1],gpsy[1]);   
+          // henkou(gpsx[0],gpsy[0],gpsx[1],gpsy[1]);   
         }
       }, 1000);
 
@@ -170,7 +172,7 @@ export default function Home() {
         clearInterval(id);
       };
     }
-  }, [enemyMove,henkou,success,error,options,direction,gameState,gpsx,gpsx1,gpsy,gpsy1]);
+  }, [enemyMove,henkou,success,error,options,direction,gameState,gpsx,gpsy,done]);
 
 
   return (
