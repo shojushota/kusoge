@@ -42,11 +42,11 @@ export default function Home() {
     // // console.log(bx,by,nx,ny);
       if(bx<nx && retu!=0){
         y=-1;
-      }else if(bx>nx && retu!=9){
+      }if(bx>nx && retu!=9){
         y=1;
-      }else if(by<ny && gyo!=9){
+      }if(by<ny && gyo!=9){
         x=1;
-      }else if(by>ny && gyo!=0){
+      }if(by>ny && gyo!=0){
         x=-1;
       }
       // // console.log(gpsx,gpsy);
@@ -193,10 +193,10 @@ export default function Home() {
         <input  onChange={(e) => setc(e.target.value)}/>
         <input  onChange={(e) => setd(e.target.value)}/>
         <button onClick={() => {gpsx.push(a); gpsy.push(b); gpsx.push(c); gpsy.push(d);}}/> */}
-        <button className="ma" onClick = {() => {if (retu!=0) {setDirectionme([-1,0])}}} >↑</button>
+        {/* <button className="ma" onClick = {() => {if (retu!=0) {setDirectionme([-1,0])}}} >↑</button>
         <button onClick = {() => {if (retu!=9) {setDirectionme([1,0])}}} >↓</button>
         <button onClick = {() => {if (gyo!=0) {setDirectionme([0,-1])}}} >←</button>
-        <button onClick = {() => {if (gyo!=9) {setDirectionme([0,1])}}} >→</button>
+        <button onClick = {() => {if (gyo!=9) {setDirectionme([0,1])}}} >→</button> */}
 
     </>
   )
