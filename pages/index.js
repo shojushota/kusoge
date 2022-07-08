@@ -49,7 +49,7 @@ export default function Home() {
       }if(by>ny && gyo!=0){
         x=-1;
       }
-      // // console.log(gpsx,gpsy);
+        console.log(gpsx,gpsy);
         setGpsx(nx);
         setGpsy(ny);
     const tmp = [...lineRow];
@@ -62,6 +62,7 @@ export default function Home() {
       setLineRow(tmp);
       setRetu(a);
       setGyo(b);
+      seta()
 
     }else if(tmp[a][b]==1 && move){
       move.map((item) => {
@@ -133,6 +134,7 @@ export default function Home() {
     var crd = pos.coords;
     // // console.log(gpsx,gpsy,crd.longitude,crd.latitude);
     henkou(gpsx,gpsy,crd.longitude,crd.latitude);
+
   },[gpsx,gpsy,henkou])
 
 
@@ -153,7 +155,7 @@ export default function Home() {
           setDone(false);
           // henkou(gpsx[0],gpsy[0],gpsx[1],gpsy[1]);   
         }
-      }, 1000);
+      }, 2000);
 
       return () => {
         clearInterval(id);
